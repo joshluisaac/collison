@@ -7,8 +7,8 @@ canvas.width = innerWidth
 canvas.height = innerHeight
 
 const mouse = {
-  x: innerWidth / 2,
-  y: innerHeight / 2
+  x: 10,
+  y: 10
 }
 
 const colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']
@@ -32,7 +32,6 @@ function getDistance(x1,y1,x2,y2) {
   return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2))
 }
 
-// Objects
 class Circle {
   constructor(x, y, radius, color) {
     this.x = x
@@ -71,9 +70,14 @@ function animate() {
   circle2.y = mouse.y;
   circle2.update();
 
-  const combinedRadius = circle1.radius + circle2. radius
+  const combinedRadius = circle1.radius + circle2.radius;
+  if (getDistance(circle1.x, circle1.y, circle2.x, circle2.y) < combinedRadius ) {
+    circle1.color = 'red';
+  } else {
+    circle1.color = 'black';
+  }
 
-  console.log(getDistance(circle1.x, circle1.y, circle2.x, circle2.y));
+  console.log();
   
 }
 

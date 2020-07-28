@@ -109,8 +109,8 @@ var c = canvas.getContext('2d');
 canvas.width = innerWidth;
 canvas.height = innerHeight;
 var mouse = {
-  x: innerWidth / 2,
-  y: innerHeight / 2
+  x: 10,
+  y: 10
 };
 var colors = ['#2185C5', '#7ECEFD', '#FFF6E5', '#FF7F66']; // Event Listeners
 
@@ -128,8 +128,7 @@ function getDistance(x1, y1, x2, y2) {
   var dx = x2 - x1;
   var dy = y2 - y1;
   return Math.sqrt(Math.pow(dx, 2) + Math.pow(dy, 2));
-} // Objects
-
+}
 
 var Circle = /*#__PURE__*/function () {
   function Circle(x, y, radius, color) {
@@ -178,7 +177,14 @@ function animate() {
   circle2.y = mouse.y;
   circle2.update();
   var combinedRadius = circle1.radius + circle2.radius;
-  console.log(getDistance(circle1.x, circle1.y, circle2.x, circle2.y));
+
+  if (getDistance(circle1.x, circle1.y, circle2.x, circle2.y) < combinedRadius) {
+    circle1.color = 'red';
+  } else {
+    circle1.color = 'black';
+  }
+
+  console.log();
 }
 
 init();
